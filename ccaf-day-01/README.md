@@ -11,7 +11,7 @@ Status: 200
 ## Running through Python + pip:
 
 ```
-PS C:\ccaf\ccaf-day1> python .\hello_pip.py
+PS C:\ccaf\ccaf-day1> python .\hello-pip.py
 Status: 200
 <!doctype html><html lang="en"><head><title>Example Domain</title><link rel="icon" href="data:,"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{background:#eee;width:6
 PS C:\ccaf\ccaf-day1> 
@@ -22,7 +22,7 @@ PS C:\ccaf\ccaf-day1>
 ```
 I'll create the script using Python's standard library (no extra dependencies needed) and then run it.
 
-● Write(hello_claude.py)
+● Write(hello-claude.py)
 Wrote 14 lines to hello_claude.py
 import re
 import urllib.request
@@ -38,7 +38,7 @@ match = re.search(r"<title>(.*?)</title>", html, re.IGNORECASE | re.DOTALL)
 
   Ran 1 shell command
 
-Created hello_claude.py and ran it. Output:
+Created hello-claude.py and ran it. Output:
 
 Status code: 200
 ```
