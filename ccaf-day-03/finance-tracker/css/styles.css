@@ -1,0 +1,377 @@
+/* --- Variables & reset --- */
+:root {
+  --color-bg: #f4f6f8;
+  --color-surface: #ffffff;
+  --color-border: #dfe3e8;
+  --color-text: #1c2430;
+  --color-text-muted: #5b6673;
+  --color-primary: #2563eb;
+  --color-primary-text: #ffffff;
+  --color-positive: #1b8a5a;
+  --color-negative: #c0392b;
+  --color-expenses: #e07a5f;
+  --color-emi: #d9a441;
+  --color-sip: #6a67ce;
+  --color-leftover: #2f9e6e;
+  --radius: 10px;
+  --focus-ring: 3px solid #2563eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.4;
+}
+
+h1, h2, h3 {
+  margin: 0 0 0.5rem;
+}
+
+button, input, select {
+  font: inherit;
+  color: inherit;
+}
+
+a, button, input, select, [tabindex] {
+  outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: var(--focus-ring);
+}
+
+/* --- Layout --- */
+#app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.app-header {
+  margin-bottom: 1rem;
+}
+
+main {
+  display: block;
+}
+
+.tab-section {
+  display: none;
+}
+
+.tab-section.active {
+  display: block;
+}
+
+/* --- Tab nav --- */
+.tab-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.tab-btn,
+.subtab-btn {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.tab-btn.active,
+.subtab-btn.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-primary-text);
+}
+
+.subtab-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* --- Dashboard --- */
+.net-cash-flow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+.net-cash-flow .label {
+  font-weight: 600;
+}
+
+.net-cash-flow .value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.net-cash-flow.positive .value {
+  color: var(--color-positive);
+}
+
+.net-cash-flow.negative .value {
+  color: var(--color-negative);
+}
+
+.flow-bar {
+  display: flex;
+  height: 1.25rem;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--color-border);
+  margin-bottom: 0.5rem;
+}
+
+.flow-seg {
+  height: 100%;
+}
+
+.seg-expenses { background: var(--color-expenses); }
+.seg-emi { background: var(--color-emi); }
+.seg-sip { background: var(--color-sip); }
+.seg-leftover { background: var(--color-leftover); }
+
+.flow-bar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.legend-swatch {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.card-label {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.card-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.quick-add {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.quick-add-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Forms & lists (shared) --- */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.entry-form,
+.watchlist-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.entry-form input,
+.entry-form select {
+  flex: 1 1 8rem;
+  min-width: 0;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-bg);
+}
+
+.entry-form button,
+.quick-add-form button,
+.watchlist-controls button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  cursor: pointer;
+}
+
+.entry-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.entry-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+}
+
+.entry-list li.editing {
+  gap: 0.4rem;
+}
+
+.entry-list li.editing input {
+  flex: 1 1 6rem;
+  min-width: 0;
+  padding: 0.4rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.entry-main {
+  font-weight: 600;
+  flex: 1 1 auto;
+}
+
+.entry-amount {
+  font-weight: 600;
+}
+
+.entry-date,
+.entry-note {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.entry-list .empty {
+  color: var(--color-text-muted);
+  font-style: italic;
+  border-style: dashed;
+}
+
+.entry-list button {
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+}
+
+.filter-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.filter-label select {
+  padding: 0.4rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+/* --- Watchlist --- */
+.disclaimer {
+  background: #fff7e6;
+  border: 1px solid #f0d58c;
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.85rem;
+  color: #7a5c00;
+  margin-bottom: 1rem;
+}
+
+.watchlist-list li span.positive {
+  color: var(--color-positive);
+  font-weight: 600;
+}
+
+.watchlist-list li span.negative {
+  color: var(--color-negative);
+  font-weight: 600;
+}
+
+/* --- Responsive --- */
+@media (max-width: 720px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .entry-list li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
